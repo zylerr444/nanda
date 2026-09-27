@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nanda 🌸</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#ffd6e7,#fff1f7,#ffd9ef);
+}
+
+.card{
+  width:90%;
+  max-width:500px;
+  padding:35px 25px;
+  text-align:center;
+  background:rgba(255,255,255,.55);
+  border-radius:25px;
+  box-shadow:0 10px 40px rgba(255,80,150,.2);
+  backdrop-filter:blur(8px);
+  animation:appear 1.5s ease;
+}
+
+.flower{
+  font-size:65px;
+  animation:float 2s ease-in-out infinite;
+}
+
+h1{
+  margin:15px 0;
+  color:#ff4f91;
+}
+
+p{
+  color:#555;
+  line-height:1.7;
+  font-size:17px;
+}
+
+b{
+  color:#ff4f91;
+}
+
+.heart{
+  position:absolute;
+  bottom:-50px;
+  animation:up 7s linear infinite;
+  opacity:.8;
+  font-size:25px;
+}
+
+.h1{left:10%;animation-delay:0s}
+.h2{left:30%;animation-delay:2s}
+.h3{left:50%;animation-delay:4s}
+.h4{left:70%;animation-delay:1s}
+.h5{left:90%;animation-delay:3s}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0) rotate(-5deg);
+  }
+  50%{
+    transform:translateY(-15px) rotate(5deg);
+  }
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes up{
+  0%{
+    transform:translateY(0) rotate(0);
+    opacity:0;
+  }
+  20%{
+    opacity:.8;
+  }
+  100%{
+    transform:translateY(-110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart h1">💕</div>
+<div class="heart h2">🌸</div>
+<div class="heart h3">💗</div>
+<div class="heart h4">✨</div>
+<div class="heart h5">💖</div>
+
+<div class="card">
+
+  <div class="flower">🌸</div>
+
+  <h1>alooo, princess 🌸</h1>
+
+  <p>
+    ak bingung ihh, mau chat apa besokk, jadi ak bikin ini dehh.
+    <br><br>
+    kurng baguss sii soalnya cuman semalem aja, tapi semoga bisa bikin kamu
+
+    <b>senyum sedikit</b> hari ini hehe.
+    <br><br>
+    Jangan lupa bahagia yaa ✨
+  </p>
+
+</div>
+
+</body>
+</html>

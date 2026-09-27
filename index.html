@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For You</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .intro {
+            transition: 0.6s ease;
+        }
+
+        .intro.hide {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
+        .intro p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        button {
+            background: #fff;
+            color: #111;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+
+            font-size: 14px;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:active {
+            transform: scale(0.94);
+        }
+
+        .message {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+
+            background: #181818;
+            border: 1px solid #292929;
+            border-radius: 18px;
+
+            padding: 28px 22px;
+            text-align: left;
+
+            line-height: 1.7;
+
+            transition: 0.7s ease;
+        }
+
+        .message.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message p {
+            margin-bottom: 16px;
+        }
+
+        .closing {
+            margin-top: 28px;
+            text-align: right;
+            font-style: italic;
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="intro" id="intro">
+            <p>ada sesuatu buat kamu...</p>
+
+            <button onclick="openMessage()">
+                OPEN
+            </button>
+        </div>
+
+
+        <div class="message" id="message">
+
+            <p>
+                alooo..<br>
+                gimana kabarnya?
+            </p>
+
+            <p>
+                ak mau ngasih ini buat kamu, diterima yaa.<br>
+                ga ada maksud apa-apa kok, cuma tanda terima kasih aja.
+            </p>
+
+            <p>
+                ak juga mau pamit.<br>
+                setelah ini ak udah ga di sini lagi.
+                ak bakal pulang, bukan ke kos atau kontrakan,
+                tapi pulang ke rumah ak sendiri.
+            </p>
+
+            <p>
+                makasi yaa, dulu udah pernah nemenin ak,
+                dengerin cerita dan keluh kesah ak,
+                walaupun mungkin buat kamu itu hal biasa wkwk.
+            </p>
+
+            <p>
+                ak cuma mau bilang makasi banyak buat semuanya.<br>
+                semoga kamu baik-baik terus yaa.
+            </p>
+
+            <div class="closing">
+                see ya, princess.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        function openMessage() {
+
+            const intro = document.getElementById("intro");
+            const message = document.getElementById("message");
+
+            intro.classList.add("hide");
+
+            setTimeout(() => {
+                intro.style.display = "none";
+
+                message.style.display = "block";
+
+                setTimeout(() => {
+                    message.classList.add("show");
+                }, 50);
+
+            }, 600);
+        }
+    </script>
+
+</body>
+</html>
