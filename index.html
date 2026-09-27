@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, #252525 0%, transparent 28%),
+        radial-gradient(circle at 85% 80%, #202020 0%, transparent 30%),
+        linear-gradient(135deg, #080808, #151515, #090909);
+
+    color: #fff;
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.stars,
+.stars::before,
+.stars::after {
+    content: "";
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    background: white;
+    border-radius: 50%;
+
+    opacity: .35;
+
+    box-shadow:
+        25px 40px white,
+        90px 120px white,
+        150px 70px white,
+        220px 170px white,
+        290px 50px white,
+        350px 140px white,
+        420px 30px white,
+        490px 180px white,
+        560px 90px white,
+        630px 150px white,
+        700px 40px white,
+        760px 200px white,
+        80px 300px white,
+        180px 250px white,
+        310px 330px white,
+        450px 280px white,
+        580px 350px white,
+        700px 290px white;
+
+    animation: starsMove 12s linear infinite;
+}
+
+.stars::before {
+    transform: translateY(500px);
+}
+
+.stars::after {
+    transform: translateY(-500px);
+    animation-delay: -6s;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+body::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.035);
+
+    filter: blur(80px);
+
+    animation: glow 7s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+    0%,100% {
+        transform: scale(1);
+        opacity: .4;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: .8;
+    }
+}
+
+
+/* =========================
+   FLOWERS
+========================= */
+
+.flower {
+    position: absolute;
+
+    font-size: 22px;
+
+    opacity: .35;
+
+    animation: floatFlower 6s ease-in-out infinite;
+}
+
+.f1 {
+    top: 15%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.f2 {
+    top: 25%;
+    right: 8%;
+    font-size: 18px;
+    animation-delay: 2s;
+}
+
+.f3 {
+    bottom: 18%;
+    left: 10%;
+    font-size: 20px;
+    animation-delay: 1s;
+}
+
+.f4 {
+    bottom: 12%;
+    right: 12%;
+    font-size: 17px;
+    animation-delay: 3s;
+}
+
+@keyframes floatFlower {
+
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-14px) rotate(8deg);
+    }
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 420px;
+
+    text-align: center;
+
+    position: relative;
+    z-index: 5;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    transition: .8s ease;
+}
+
+.intro.hide {
+    opacity: 0;
+    transform: translateY(-25px) scale(.95);
+    pointer-events: none;
+}
+
+.intro p {
+    color: #999;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 22px;
+
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* =========================
+   OPEN BUTTON
+========================= */
+
+button {
+    border: none;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.open {
+    background: #fff;
+    color: #111;
+
+    padding: 13px 34px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,.08);
+}
+
+.open:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 35px rgba(255,255,255,.15);
+}
+
+.open:active {
+    transform: scale(.94);
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    display: none;
+
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(.97);
+
+    background: rgba(20,20,20,.78);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    border-radius: 22px;
+
+    padding: 28px 23px 23px;
+
+    text-align: left;
+
+    line-height: 1.8;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.55);
+
+    transition: .8s ease;
+
+    position: relative;
+}
+
+.message.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================
+   CARD TOP
+========================= */
+
+.card-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.line {
+    width: 45px;
+    height: 1px;
+
+    background: #444;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+#typing {
+    min-height: 170px;
+
+    color: #eee;
+
+    font-size: 15px;
+}
+
+.cursor {
+    display: inline-block;
+
+    width: 2px;
+    height: 17px;
+
+    background: #aaa;
+
+    margin-left: 3px;
+
+    vertical-align: middle;
+
+    animation: blink .8s infinite;
+}
+
+@keyframes blink {
+
+    0%,50% {
+        opacity: 1;
+    }
+
+    51%,100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   NEXT BUTTON
+========================= */
+
+.next-area {
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 15px;
+}
+
+.next {
+    display: none;
+
+    background: transparent;
+
+    color: #999;
+
+    border: 1px solid #333;
+
+    padding: 9px 18px;
+
+    min-height: 40px;
+
+    font-size: 12px;
+
+    letter-spacing: .5px;
+}
+
+.next:hover {
+    color: #fff;
+
+    border-color: #555;
+
+    transform: translateX(3px);
+}
+
+.next:active {
+    transform: scale(.95);
+}
+
+
+/* =========================
+   CLOSING
+========================= */
+
+.closing {
+    display: none;
+
+    margin-top: 28px;
+
+    text-align: right;
+
+    color: #ddd;
+
+    font-style: italic;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition: 1.2s ease;
+}
+
+.closing.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.princess {
+    color: #fff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 360px) {
+
+    .message {
+        padding: 24px 18px 20px;
+    }
+
+    #typing {
+        font-size: 14px;
+    }
+
+    .flower {
+        font-size: 18px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="stars"></div>
+
+
+<!-- FLOWERS -->
+
+<div class="flower f1">✿</div>
+<div class="flower f2">✦</div>
+<div class="flower f3">❀</div>
+<div class="flower f4">✿</div>
+
+
+<div class="container">
+
+
+    <!-- OPENING -->
+
+    <div class="intro" id="intro">
+
+        <p>ada sesuatu buat kamu...</p>
+
+        <button
+            class="open"
+            onclick="openMessage()"
+        >
+            OPEN
+        </button>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div
+        class="message"
+        id="message"
+    >
+
+        <div class="card-top">
+
+            <span id="pageNumber">
+                01 / 05
+            </span>
+
+            <span class="line"></span>
+
+        </div>
+
+
+        <div id="typing"></div>
+
+        <span
+            class="cursor"
+            id="cursor"
+        ></span>
+
+
+        <div class="next-area">
+
+            <button
+                class="next"
+                id="next"
+                onclick="nextMessage()"
+            >
+                lanjut →
+            </button>
+
+        </div>
+
+
+        <div
+            class="closing"
+            id="closing"
+        >
+            see ya, <span class="princess">princess.</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   MESSAGE DATA
+========================= */
+
+const texts = [
+
+    `alooo..<br>
+    gimana kabarnya?`,
+
+    `ak mau ngasih ini buat kamu, diterima yaa.<br>
+    ga ada maksud apa-apa kok, cuma tanda terima kasih aja.`,
+
+    `ak juga mau pamit.<br>
+    setelah ini ak udah ga di sini lagi.
+    ak bakal pulang, bukan ke kos atau kontrakan,
+    tapi pulang ke rumah ak sendiri.`,
+
+    `makasi yaa, dulu udah pernah nemenin ak,
+    dengerin cerita dan keluh kesah ak,
+    walaupun mungkin buat kamu itu hal biasa wkwk.`,
+
+    `ak cuma mau bilang makasi banyak buat semuanya.<br>
+    semoga kamu baik-baik terus yaa.`
+
+];
+
+
+let index = 0;
+
+let typing = false;
+
+
+/* =========================
+   OPEN
+========================= */
+
+function openMessage() {
+
+    const intro =
+        document.getElementById("intro");
+
+    const message =
+        document.getElementById("message");
+
+
+    intro.classList.add("hide");
+
+
+    setTimeout(() => {
+
+        intro.style.display = "none";
+
+        message.style.display = "block";
+
+
+        setTimeout(() => {
+
+            message.classList.add("show");
+
+            showText();
+
+        }, 100);
+
+    }, 700);
+
+}
+
+
+/* =========================
+   TYPE TEXT
+========================= */
+
+function showText() {
+
+    const typingBox =
+        document.getElementById("typing");
+
+    const cursor =
+        document.getElementById("cursor");
+
+    const next =
+        document.getElementById("next");
+
+    const pageNumber =
+        document.getElementById("pageNumber");
+
+
+    typingBox.innerHTML = "";
+
+    next.style.display = "none";
+
+    cursor.style.display = "inline-block";
+
+    typing = true;
+
+
+    pageNumber.innerText =
+        String(index + 1).padStart(2, "0")
+        + " / "
+        + String(texts.length).padStart(2, "0");
+
+
+    const text = texts[index];
+
+    let char = 0;
+
+
+    function type() {
+
+        if (char < text.length) {
+
+            typingBox.innerHTML =
+                text.substring(0, char + 1);
+
+            char++;
+
+            setTimeout(type, 28);
+
+        } else {
+
+            typing = false;
+
+            cursor.style.display = "none";
+
+
+            if (index < texts.length - 1) {
+
+                next.style.display = "block";
+
+            } else {
+
+                const closing =
+                    document.getElementById("closing");
+
+                closing.style.display = "block";
+
+
+                setTimeout(() => {
+
+                    closing.classList.add("show");
+
+                }, 150);
+
+            }
+
+        }
+
+    }
+
+
+    type();
+
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+function nextMessage() {
+
+    if (typing) return;
+
+
+    index++;
+
+    showText();
+
+}
+
+
+</script>
+
+
+</body>
+  </html>
+  
